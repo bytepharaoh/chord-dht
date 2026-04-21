@@ -13,4 +13,4 @@ def build_finger_table(node, ring):
         else:
             successor_node = ring[idx]
             
-        node.finger_table.append(successor_node)
+        node.finger_table.append(successor_node.node_id)
