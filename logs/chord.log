@@ -138,3 +138,29 @@
 2026-04-22T15:24:34 | LOOKUP | {'key': 'readme.md', 'path': [15, 37], 'hop_count': 2}
 2026-04-22T15:24:34 | LOOKUP | {'key': 'config.json', 'path': [15], 'hop_count': 1}
 2026-04-22T15:24:34 | LEAVE | {'node_id': 15}
+2026-04-22T20:56:33 | JOIN | {'node_id': 49}
+2026-04-22T20:56:33 | JOIN | {'node_id': 30}
+2026-04-22T20:56:33 | JOIN | {'node_id': 15}
+2026-04-22T20:56:33 | JOIN | {'node_id': 37}
+2026-04-22T20:56:33 | JOIN | {'node_id': 42}
+2026-04-22T20:56:33 | INSERT | {'key': 'file1.txt', 'node_id': 49}
+2026-04-22T20:56:33 | INSERT | {'key': 'photo.jpg', 'node_id': 30}
+2026-04-22T20:56:33 | INSERT | {'key': 'video.mp4', 'node_id': 49}
+2026-04-22T20:56:33 | INSERT | {'key': 'music.mp3', 'node_id': 37}
+2026-04-22T20:56:33 | INSERT | {'key': 'doc.pdf', 'node_id': 37}
+2026-04-22T20:56:33 | INSERT | {'key': 'data.csv', 'node_id': 15}
+2026-04-22T20:56:33 | INSERT | {'key': 'index.html', 'node_id': 37}
+2026-04-22T20:56:33 | INSERT | {'key': 'app.py', 'node_id': 15}
+2026-04-22T20:56:33 | INSERT | {'key': 'readme.md', 'node_id': 42}
+2026-04-22T20:56:33 | INSERT | {'key': 'config.json', 'node_id': 30}
+2026-04-22T20:56:33 | LOOKUP | {'key': 'file1.txt', 'path': [15, 37, 42], 'hop_count': 3}
+2026-04-22T20:56:33 | LOOKUP | {'key': 'photo.jpg', 'path': [15], 'hop_count': 1}
+2026-04-22T20:56:33 | LOOKUP | {'key': 'video.mp4', 'path': [15, 37, 42], 'hop_count': 3}
+2026-04-22T20:56:33 | LOOKUP | {'key': 'music.mp3', 'path': [15, 30], 'hop_count': 2}
+2026-04-22T20:56:33 | LOOKUP | {'key': 'doc.pdf', 'path': [15, 30], 'hop_count': 2}
+2026-04-22T20:56:33 | LOOKUP | {'key': 'data.csv', 'path': [15], 'hop_count': 1}
+2026-04-22T20:56:33 | LOOKUP | {'key': 'index.html', 'path': [15, 30], 'hop_count': 2}
+2026-04-22T20:56:33 | LOOKUP | {'key': 'app.py', 'path': [15], 'hop_count': 1}
+2026-04-22T20:56:33 | LOOKUP | {'key': 'readme.md', 'path': [15, 37], 'hop_count': 2}
+2026-04-22T20:56:33 | LOOKUP | {'key': 'config.json', 'path': [15], 'hop_count': 1}
+2026-04-22T20:56:33 | LEAVE | {'node_id': 15}
