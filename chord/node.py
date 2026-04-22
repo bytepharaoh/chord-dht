@@ -1,4 +1,3 @@
-
 import hashlib
 
 # Ring size = 2^M = 64 slots (use 160 for real SHA-1, 6 is fine for simulation)
