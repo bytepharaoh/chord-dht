@@ -1,20 +1,19 @@
 from bisect import bisect_left
 
-
-def build_finger_table(node, ring):
+def build_finger_table(node, sorted_nodes):
     node.finger_table = []
-
-    # Extract sorted IDs for bisect to work
-    ring_ids = [n.node_id for n in ring]
-
+    ring_ids = [n.node_id for n in sorted_nodes]
+    
     for i in range(node.m):
         target_id = (node.node_id + 2**i) % (2**node.m)
-
+        
         idx = bisect_left(ring_ids, target_id)
-
-        if idx == len(ring):
-            successor_node = ring[0]
+        
+        if idx == len(sorted_nodes):
+            successor_node = sorted_nodes[0]
         else:
-            successor_node = ring[idx]
-
+            successor_node = sorted_nodes[idx]
+        
         node.finger_table.append(successor_node.node_id)
+    
+    print(f"DEBUG: Node {node.node_id} finger table -> {node.finger_table}")
