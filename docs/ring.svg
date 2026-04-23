@@ -1,0 +1,71 @@
+<svg width="680" height="420" viewBox="0 0 680 420" xmlns="http://www.w3.org/2000/svg" role="img">
+<title>Chord DHT Ring Structure</title>
+<desc>Five nodes arranged on a circular ring numbered 0 to 63, showing the Chord DHT topology</desc>
+
+<defs>
+  <marker id="arrow" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+    <path d="M2 1L8 5L2 9" fill="none" stroke="#1D9E75" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+  </marker>
+</defs>
+
+<!-- Background ring (light circle) -->
+<circle cx="280" cy="210" r="160" fill="none" stroke="#9FE1CB" stroke-width="1.5" stroke-dasharray="4 3" opacity="0.5"/>
+
+<!-- Ring labels around the circle (0, 16, 32, 48) -->
+<text x="280" y="38" text-anchor="middle" font-family="monospace" font-size="11" fill="#5F5E5A" opacity="0.6">0</text>
+<text x="452" y="218" text-anchor="start" font-family="monospace" font-size="11" fill="#5F5E5A" opacity="0.6">16</text>
+<text x="280" y="386" text-anchor="middle" font-family="monospace" font-size="11" fill="#5F5E5A" opacity="0.6">32</text>
+<text x="100" y="218" text-anchor="end" font-family="monospace" font-size="11" fill="#5F5E5A" opacity="0.6">48</text>
+
+<!-- Arrows showing clockwise direction -->
+<path d="M 280 52 Q 380 58 432 140" fill="none" stroke="#9FE1CB" stroke-width="1" marker-end="url(#arrow)" opacity="0.5"/>
+
+<!-- Node 15 — top right area -->
+<circle cx="392" cy="102" r="26" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="392" y="97" text-anchor="middle" font-family="monospace" font-size="13" font-weight="600" fill="#085041">15</text>
+<text x="392" y="113" text-anchor="middle" font-family="monospace" font-size="9" fill="#0F6E56">Charlie</text>
+
+<!-- Node 30 — right -->
+<circle cx="430" cy="248" r="26" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="430" y="243" text-anchor="middle" font-family="monospace" font-size="13" font-weight="600" fill="#085041">30</text>
+<text x="430" y="259" text-anchor="middle" font-family="monospace" font-size="9" fill="#0F6E56">Bob</text>
+
+<!-- Node 37 — bottom right -->
+<circle cx="360" cy="340" r="26" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="360" y="335" text-anchor="middle" font-family="monospace" font-size="13" font-weight="600" fill="#085041">37</text>
+<text x="360" y="351" text-anchor="middle" font-family="monospace" font-size="9" fill="#0F6E56">Diana</text>
+
+<!-- Node 42 — bottom left -->
+<circle cx="210" cy="340" r="26" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="210" y="335" text-anchor="middle" font-family="monospace" font-size="13" font-weight="600" fill="#085041">42</text>
+<text x="210" y="351" text-anchor="middle" font-family="monospace" font-size="9" fill="#0F6E56">Eve</text>
+
+<!-- Node 49 — left -->
+<circle cx="142" cy="220" r="26" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="142" y="215" text-anchor="middle" font-family="monospace" font-size="13" font-weight="600" fill="#085041">49</text>
+<text x="142" y="231" text-anchor="middle" font-family="monospace" font-size="9" fill="#0F6E56">Alice</text>
+
+<!-- Key stored on node 37 -->
+<rect x="460" y="318" width="110" height="36" rx="6" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
+<text x="515" y="333" text-anchor="middle" font-family="monospace" font-size="10" fill="#633806">file1.txt</text>
+<text x="515" y="346" text-anchor="middle" font-family="monospace" font-size="9" fill="#854F0B">hash = 35 → node 37</text>
+<line x1="460" y1="336" x2="387" y2="342" stroke="#BA7517" stroke-width="0.8" stroke-dasharray="3 2"/>
+
+<!-- Key stored on node 49 -->
+<rect x="20" y="180" width="100" height="36" rx="6" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
+<text x="70" y="195" text-anchor="middle" font-family="monospace" font-size="10" fill="#633806">video.mp4</text>
+<text x="70" y="208" text-anchor="middle" font-family="monospace" font-size="9" fill="#854F0B">hash = 44 → node 49</text>
+<line x1="120" y1="194" x2="142" y2="210" stroke="#BA7517" stroke-width="0.8" stroke-dasharray="3 2"/>
+
+<!-- Title -->
+<text x="520" y="60" text-anchor="middle" font-family="sans-serif" font-size="14" font-weight="600" fill="#085041">Chord Ring</text>
+<text x="520" y="78" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#5F5E5A">64 slots (0–63)</text>
+<text x="520" y="96" text-anchor="middle" font-family="sans-serif" font-size="11" fill="#5F5E5A">5 active nodes</text>
+
+<!-- Legend -->
+<circle cx="482" cy="140" r="8" fill="#E1F5EE" stroke="#1D9E75" stroke-width="1.5"/>
+<text x="496" y="144" font-family="sans-serif" font-size="11" fill="#5F5E5A">Node</text>
+<rect x="482" y="158" width="16" height="10" rx="3" fill="#FAEEDA" stroke="#BA7517" stroke-width="1"/>
+<text x="504" y="167" font-family="sans-serif" font-size="11" fill="#5F5E5A">Stored key</text>
+
+</svg>
