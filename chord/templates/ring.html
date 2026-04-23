@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chord DHT - Ring Visualizer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+    <link rel="icon" type="image/png" sizes="32x32" href="{{ url_for('static', filename='favicon.png') }}">
+</head>
+
+<body>
+    <div class="container">
+        <h1>Chord DHT Ring Visualizer</h1>
+        <div class="ring-container">
+            <canvas id="ringCanvas" width="500" height="500"></canvas>
+        </div>
+        <div class="info-panel">
+
+            <!-- Key Lookup -->
+            <div class="lookup-box">
+                <h3>Key Lookup</h3>
+                <input type="text" id="keyInput" placeholder="Type a key e.g. hello.txt">
+                <button id="lookupBtn">Find responsible node</button>
+                <div class="result" id="result"></div>
+                <div class="path" id="path"></div>
+            </div>
+
+            <!-- Add Node -->
+            <div class="lookup-box">
+                <h3>Add Node</h3>
+                <input type="text" id="addNodeInput" placeholder="Node name e.g. NodeF">
+                <button id="addNodeBtn">Add Node</button>
+                <div id="addNodeResult"></div>
+            </div>
+
+            <!-- Remove Node -->
+            <div class="lookup-box">
+                <h3>Remove Node</h3>
+                <select id="removeNodeSelect"></select>
+                <button id="removeNodeBtn">Remove Node</button>
+                <div id="removeNodeResult"></div>
+            </div>
+
+            <!-- Active Nodes -->
+            <div class="node-list">
+                <h3>Active Nodes</h3>
+                <ul id="nodeList"></ul>
+                <div id="fingerInfo"></div>
+            </div>
+
+        </div>
+    </div>
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+
+</html>

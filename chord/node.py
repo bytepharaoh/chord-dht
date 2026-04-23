@@ -1,4 +1,5 @@
 import hashlib
+from chord.logger import log
 
 # Ring size = 2^M = 64 slots (use 160 for real SHA-1, 6 is fine for simulation)
 M = 6
@@ -42,6 +43,7 @@ class Ring:
         node = Node(name)
         self.nodes[node.node_id] = node
         self._update_successors()
+        log.log_join(node.node_id)
         print(f"[Ring] Added {node}")
         return node
 
@@ -61,9 +63,17 @@ class Ring:
         return " -> ".join(str(n.node_id) for n in self.get_sorted_nodes()) + " -> (wrap)"
 
 
-    def remove_node(self, name: str):
+    def remove_node(self, name: str) -> bool:
         node_id = hash_key(name)
-        if node_id in self.nodes:
-            del self.nodes[node_id]
+
+        if node_id not in self.nodes:
+            return False
+
+        del self.nodes[node_id]
+
+        if self.nodes:
             self._update_successors()
-            print(f"[Ring] Removed node {node_id}")
+
+        log.log_leave(node_id)
+        print(f"[Ring] Removed node {node_id}")
+        return True
