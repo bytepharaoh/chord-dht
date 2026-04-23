@@ -20,7 +20,7 @@ Imagine you have 5 computers and want to store 1000 files across them — withou
 
 ---
 
-## The Magic — Finger Tables
+## Finger Tables
 
 Without shortcuts, finding a key means asking every node one by one. Slow.
 
@@ -109,6 +109,8 @@ Open **http://127.0.0.1:8010** in your browser.
 ---
 
 ## Web Interface Features
+![Description](docs/Web_photo.png)
+
 
 | Feature | What it does |
 |---------|-------------|
@@ -155,11 +157,11 @@ Avg hops AFTER  churn: 1.30
 
 | Name | Role |
 |------|------|
-| **ZiZO** | Project lead · Ring core · Consistent hashing · Integration |
-| **Egor** | Finger table construction |
-| **Михаил** | Routing algorithm · Lookup logic |
-| **Камиль** | Logger · Tests · Churn simulation |
-| **Артём** | Visualizer · Web interface · Report & slides |
+| **Ziad Mohamed** | Project lead · Ring core · Consistent hashing · Integration |
+| **Egor Maiorov** | Finger table construction |
+| **Mikhail Tikhonov** | Routing algorithm · Lookup logic |
+| **Kamil Khusnutdinov** | Logger · Tests · Churn simulation |
+| **Artem Ulianov** | Visualizer · Web interface · Report & slides |
 
 ---
 
