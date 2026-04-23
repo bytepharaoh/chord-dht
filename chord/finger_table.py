@@ -16,4 +16,4 @@ def build_finger_table(node, sorted_nodes):
         
         node.finger_table.append(successor_node.node_id)
     
-    print(f"DEBUG: Node {node.node_id} finger table -> {node.finger_table}")
+    # print(f"DEBUG: Node {node.node_id} finger table -> {node.finger_table}")
