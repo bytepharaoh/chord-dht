@@ -1,9 +1,0 @@
-README.md
-setup.py
-chord/__init__.py
-chord/node.py
-chord_dht.egg-info/PKG-INFO
-chord_dht.egg-info/SOURCES.txt
-chord_dht.egg-info/dependency_links.txt
-chord_dht.egg-info/top_level.txt
-tests/test_ring.py
