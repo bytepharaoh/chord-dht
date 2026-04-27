@@ -1,127 +1,69 @@
-# Chord DHT Simulation
+# chord-dht
 
-A Python simulation of the **Chord Distributed Hash Table** — a peer-to-peer system where nodes organize themselves into a logical ring and can find any stored key in **O(log N) hops**, with no central server.
+A simulation of the Chord DHT protocol written in Python. Nodes sit on a logical ring, keys get hashed to positions on that ring, and lookups hop between nodes using finger tables instead of asking everyone one by one.
 
-Built as a 6-day university project by a team of 5. Includes a full CLI demo and a live web interface.
+We built this in 6 days for a university course. It has a CLI demo and a web interface you can actually click around in.
 
 ---
 
-## What is this, actually?
+## How it works
 
-Imagine you have 5 computers and want to store 1000 files across them — without any central server telling everyone where everything is. How does computer A find a file stored on computer D?
+Every node and every key gets a number between 0 and 63 (via SHA-1). Imagine those numbers arranged in a circle. A key belongs to whichever node comes first clockwise from it.
 
-**Chord solves this.** Every node gets a position on an imaginary circle numbered 0–63. Every key (file, data) also gets a position via hashing. A key lives on the **first node clockwise** from its hash position.
+Without any optimization that means finding a key could take O(N) hops — you'd ask node after node until you land on the right one. Finger tables fix this. Each node keeps 6 shortcuts: pointers to nodes at positions +1, +2, +4, +8, +16, +32 ahead. That gets you to O(log N) hops.
 
-<br>
+When a node leaves, its keys go to the next node clockwise and the finger tables rebuild. That's churn.
 
 ![Ring Structure](docs/ring.svg)
 
-*Five nodes sit on a 64-slot ring. Keys are hashed to a position and stored on the nearest clockwise node.*
-
----
-
-## Finger Tables
-
-Without shortcuts, finding a key means asking every node one by one. Slow.
-
-Each node keeps a **finger table** — 6 shortcuts pointing to nodes at positions `+1, +2, +4, +8, +16, +32` ahead on the ring. This means any lookup takes at most **O(log N) hops**.
-
-<br>
-
 ![Finger Table](docs/finger_table.svg)
-
-*Node 15 has 6 finger table entries. Each entry skips further ahead, so a single node can reach any other node in a few jumps.*
-
----
-
-## How a Lookup Works
-
-Looking up `"file1.txt"` (hashes to `43`) starting from node `15`:
-
-<br>
 
 ![Lookup Path](docs/lookup.svg)
 
-*3 hops to find the responsible node out of 5. As the ring grows to hundreds of nodes, it stays O(log N).*
-
----
-
-## Churn — Nodes Joining & Leaving
-
-When a node leaves the ring, its keys are inherited by the next clockwise node. Finger tables rebuild automatically.
-
-<br>
-
 ![Churn](docs/churn.svg)
 
-*Charlie (node 15) leaves. Node 30 inherits its keys. The ring keeps working.*
-
 ---
 
-## Project Structure
-
-```
-chord-dht/
-├── chord/
-│   ├── node.py           # Ring + Node + consistent hashing (SHA-1)
-│   ├── finger_table.py   # Builds 6-entry finger table for each node
-│   ├── routing.py        # Chord lookup algorithm — the core
-│   ├── logger.py         # Logs inserts, lookups, joins, leaves to file
-│   ├── visualizer.py     # Text/ASCII ring display
-│   ├── templates/
-│   │   └── ring.html     # Web interface
-│   └── static/
-│       ├── script.js     # Frontend logic (add/remove nodes, lookup)
-│       └── style.css     # Styling
-├── main.py               # Full CLI demo with stats
-├── server.py             # Flask web interface
-└── tests/
-    └── test_ring.py      # Unit tests
-```
-
----
-
-## How to Run
-
-### 1. Clone & install
+## Setup
 
 ```bash
 git clone https://github.com/bytepharaoh/chord-dht.git
 cd chord-dht
-pip3 install flask
+pip3 install flask flask-session
 pip3 install -e .
 ```
 
-### 2. CLI demo
+---
+
+## Running it
+
+**CLI demo** — shows the full ring, inserts 10 keys, runs lookups, removes a node, prints stats:
 
 ```bash
 PYTHONPATH=. python3 main.py
 ```
 
-### 3. Web interface
+**Web interface** — interactive, runs in your browser:
 
 ```bash
 PYTHONPATH=. python3 server.py
 ```
 
-Open **http://127.0.0.1:8010** in your browser.
+Then go to http://127.0.0.1:8010
+
+Each browser session gets its own ring so multiple people can use it at the same time without stepping on each other.
 
 ---
 
-## Web Interface Features
-![Description](docs/Web_photo.png)
+## Web interface
 
+![Web Interface](docs/Web_photo.png)
 
-| Feature | What it does |
-|---------|-------------|
-| **Key Lookup** | Type any string (e.g. `hello.txt`) — see which node stores it and the full hop path |
-| **Add Node** | Type a name — node appears on the ring instantly |
-| **Remove Node** | Pick a node to remove — ring rebalances automatically |
-| **Show Fingers** | Click any active node to see its finger table |
+You can type a key and see which node is responsible for it, with the full hop path drawn on the ring. Click any node to see its finger table as arrows on the ring. Add or remove nodes and watch the ring update live. There's also a reset button if things get messy.
 
 ---
 
-## Sample Output
+## What the output looks like
 
 ```
 === Ring Structure ===
@@ -142,27 +84,40 @@ Avg hops AFTER  churn: 1.30
 
 ---
 
-## Key Concepts
+## Project layout
 
-| Term | Meaning |
-|------|---------|
-| **Consistent hashing** | Maps both nodes and keys to the same 0–63 ID space using SHA-1 |
-| **Finger table** | Each node's 6 routing shortcuts, enabling O(log N) lookup |
-| **Successor** | The first node clockwise from any position on the ring |
-| **Churn** | Nodes joining or leaving; finger tables rebuild to maintain correctness |
+```
+chord-dht/
+├── chord/
+│   ├── node.py           # the ring, nodes, and hashing
+│   ├── finger_table.py   # builds finger tables
+│   ├── routing.py        # the lookup algorithm
+│   ├── logger.py         # event logging
+│   ├── visualizer.py     # text ring display
+│   ├── templates/
+│   │   └── ring.html
+│   └── static/
+│       ├── script.js
+│       └── style.css
+├── docs/                 # diagrams
+├── main.py               # CLI demo
+├── server.py             # web interface
+└── tests/
+    └── test_ring.py
+```
 
 ---
 
 ## Team
 
-| Name | Role |
-|------|------|
-| **Ziad Mohamed** | Project lead · Ring core · Consistent hashing · Integration |
-| **Egor Maiorov** | Finger table construction |
-| **Mikhail Tikhonov** | Routing algorithm · Lookup logic |
-| **Kamil Khusnutdinov** | Logger · Tests · Churn simulation |
-| **Artem Ulianov** | Visualizer · Web interface · Report & slides |
+| | |
+|---|---|
+| Ziad Mohamed | project lead, ring core, hashing, integration |
+| Egor Maiorov | finger table construction |
+| Mikhail Tikhonov | routing algorithm |
+| Kamil Khusnutdinov | logging, tests, churn simulation |
+| Artem Ulianov | visualizer, web interface, report, slides |
 
 ---
 
-*Distributed Network Systems — University course project*
+*Distributed and Network Programming — Innopolis University, April 2026*

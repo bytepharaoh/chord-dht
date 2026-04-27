@@ -12,9 +12,17 @@
 <body>
     <div class="container">
         <h1>Chord DHT Ring Visualizer</h1>
+        <p style="text-align:center;color:#64748b;font-size:13px;margin-top:-10px;margin-bottom:12px">
+            Your own session — changes only affect your view 🔒
+        </p>
+
         <div class="ring-container">
             <canvas id="ringCanvas" width="500" height="500"></canvas>
+            <p style="text-align:center;color:#94a3b8;font-size:11px;margin-top:4px">
+                Click any node to show finger table arrows
+            </p>
         </div>
+
         <div class="info-panel">
 
             <!-- Key Lookup -->
@@ -47,6 +55,10 @@
                 <h3>Active Nodes</h3>
                 <ul id="nodeList"></ul>
                 <div id="fingerInfo"></div>
+                <button onclick="resetRing()"
+                    style="margin-top:12px;background:#ef4444;color:white;border:none;padding:6px 14px;border-radius:6px;cursor:pointer;font-size:12px">
+                    🔄 Reset Ring
+                </button>
             </div>
 
         </div>
